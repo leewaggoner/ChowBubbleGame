@@ -1,12 +1,9 @@
 package com.wreckingball.chowbubble.utils
 
-import android.content.Context
 import android.content.SharedPreferences
 
-private const val PREFERENCES_FILE_KEY = "com.wreckingball.chowbubble"
-
-class PreferencesWrapper(context: Context) {
-    private var preferences : SharedPreferences = context.getSharedPreferences(PREFERENCES_FILE_KEY, Context.MODE_PRIVATE)
+class PreferencesWrapper(sharedPreferences: SharedPreferences) {
+    private var preferences = sharedPreferences
 
     fun getBoolean(key: String, default: Boolean) : Boolean {
         return preferences.getBoolean(key, default);

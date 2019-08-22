@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ChowBubble</string>
+    <string name="instructions_name">Instructions</string>
+    <string name="game_name">ChowBubble Game</string>
+    <string name="game_over_name">Game Over</string>
+    <string name="your_score">Your Score:</string>
+    <string name="highest_score">Best Score:</string>
 </resources>
