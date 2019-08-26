@@ -8,33 +8,38 @@ import com.wreckingball.chowbubble.animations.PulseAnimation
 import com.wreckingball.chowbubble.controllers.CHOW_SONGS_KEY
 import com.wreckingball.chowbubble.controllers.ChowSongs
 import com.wreckingball.chowbubble.utils.PreferencesWrapper
-import kotlinx.android.synthetic.main.activity_main_menu.*
+import kotlinx.android.synthetic.main.activity_gameover.*
 import org.koin.android.ext.android.inject
 
-class ActivityMainMenu : AppCompatActivity() {
+const val NEW_SCORE_KEY = "new_score"
+
+class ActivityGameOver : AppCompatActivity() {
+    private val HIGH_SCORE_KEY = "high_score"
     private val preferences: PreferencesWrapper by inject()
     private val chowSongs: ChowSongs by inject()
     private var soundOn: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_menu)
+        setContentView(R.layout.activity_gameover)
 
-        button_sound.setOnClickListener {
+        displayScore()
+
+        button_over_sound.setOnClickListener {
             soundOn = !soundOn
             handleSoundButton(soundOn, true)
         }
 
-        button_instructions.setOnClickListener {
+        button_over_instructions.setOnClickListener {
             val pulse = AnimationUtils.loadAnimation(this, R.anim.pulse)
             pulse.setAnimationListener(PulseAnimation(this, ActivityInstructions::class.java))
-            button_instructions.startAnimation(pulse)
+            button_over_instructions.startAnimation(pulse)
         }
 
-        button_play.setOnClickListener {
+        button_playagain.setOnClickListener {
             val pulse = AnimationUtils.loadAnimation(this, R.anim.pulse)
             pulse.setAnimationListener(PulseAnimation(this, ActivityGame::class.java))
-            button_play.startAnimation(pulse)
+            button_playagain.startAnimation(pulse)
         }
     }
 
@@ -46,17 +51,31 @@ class ActivityMainMenu : AppCompatActivity() {
 
     private fun handleSoundButton(isOn: Boolean, updateSound: Boolean = false) {
         if (isOn) {
-            button_sound.setImageResource(R.drawable.sound_on)
+            button_over_sound.setImageResource(R.drawable.sound_on)
             preferences.putBoolean(CHOW_SONGS_KEY, true)
             if (updateSound) {
                 chowSongs.play(this, R.raw.main_theme)
             }
         } else {
-            button_sound.setImageResource(R.drawable.sound_off)
+            button_over_sound.setImageResource(R.drawable.sound_off)
             preferences.putBoolean(CHOW_SONGS_KEY, false)
             if (updateSound) {
                 chowSongs.pause()
             }
         }
+    }
+
+    private fun displayScore() {
+        val newScore = intent.getIntExtra(NEW_SCORE_KEY, 0)
+        new_score.text = getString(R.string.new_score, newScore)
+
+        val bestScore = preferences.getInt(HIGH_SCORE_KEY, 0)
+        if (newScore > bestScore) {
+            preferences.putInt(HIGH_SCORE_KEY, newScore)
+            best_score.text = getString(R.string.best_score, newScore)
+        } else {
+            best_score.text = getString(R.string.best_score, bestScore)
+        }
+
     }
 }

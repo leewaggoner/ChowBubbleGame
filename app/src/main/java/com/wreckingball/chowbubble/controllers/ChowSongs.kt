@@ -7,19 +7,37 @@ const val CHOW_SONGS_KEY = "ChowSongsKey"
 
 class ChowSongs {
     private var mediaPlayer : MediaPlayer? = null
+    private var currentTheme = -1
 
     fun play(context: Context, theme: Int) {
-        mediaPlayer = MediaPlayer.create(context, theme)
-        mediaPlayer?.isLooping = true
-        mediaPlayer?.start()
+        val isPlaying = mediaPlayer?.isPlaying ?: false
+        if (mediaPlayer == null) {
+            //create new media player and play the theme
+            mediaPlayer = MediaPlayer.create(context, theme)
+            mediaPlayer?.isLooping = true
+            mediaPlayer?.start()
+            currentTheme = theme
+        } else if(theme != currentTheme) {
+            //stop and switch themes
+            stop()
+            mediaPlayer = MediaPlayer.create(context, theme)
+            mediaPlayer?.isLooping = true
+            mediaPlayer?.start()
+            currentTheme = theme
+        } else if (!isPlaying) {
+            //resume playing
+            mediaPlayer?.start()
+        }
+    }
+
+    fun pause() {
+        mediaPlayer?.pause()
     }
 
     fun stop() {
         mediaPlayer?.stop()
-    }
-
-    fun release() {
         mediaPlayer?.release()
         mediaPlayer = null
+        currentTheme = -1
     }
 }
