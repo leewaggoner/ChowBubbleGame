@@ -16,6 +16,7 @@ import org.koin.core.context.startKoin
 class ChowBubbleApplication : Application(), LifecycleObserver {
     val chowSongs: ChowSongs by inject()
     val preferences: PreferencesWrapper by inject()
+    var isOn: Boolean? = false
     override fun onCreate() {
         super.onCreate()
         startKoin {
@@ -28,15 +29,17 @@ class ChowBubbleApplication : Application(), LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun OnAppStart() {
-        val isOn = preferences.getBoolean(CHOW_SONGS_KEY, false)
-        if (isOn) {
+        isOn = preferences.getBoolean(CHOW_SONGS_KEY, false)
+        if (isOn!!) {
             chowSongs.play(this, R.raw.main_theme)
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun OnAppResume() {
-        chowSongs.play(this, R.raw.main_theme)
+        if (isOn!!) {
+            chowSongs.play(this, R.raw.main_theme)
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)

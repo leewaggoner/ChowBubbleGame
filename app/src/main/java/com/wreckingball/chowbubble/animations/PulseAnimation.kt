@@ -14,6 +14,5 @@ class PulseAnimation(private val activity: AppCompatActivity, private val clazz:
     override fun onAnimationEnd(animation: Animation?) {
         val intent = Intent(activity, clazz)
         activity.startActivity(intent)
-//        activity.finish()
     }
 }
