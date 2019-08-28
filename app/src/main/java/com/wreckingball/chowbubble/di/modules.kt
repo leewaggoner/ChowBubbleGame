@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.wreckingball.chowbubble.controllers.ChowController
 import com.wreckingball.chowbubble.controllers.ChowSongs
 import com.wreckingball.chowbubble.graphics.Background
+import com.wreckingball.chowbubble.graphics.Moon
 import com.wreckingball.chowbubble.graphics.SpriteBitmapFactory
 import com.wreckingball.chowbubble.utils.PreferencesWrapper
 import com.wreckingball.chowbubble.utils.ScreenUtils
@@ -25,6 +26,7 @@ val appModule = module(override = true) {
     single { ScreenUtils(androidContext(), appActivity) }
     single { SpriteBitmapFactory(androidContext()) }
     single { Background() }
+    single { Moon() }
 }
 
 private fun getSharedPrefs(context: Context) : SharedPreferences {

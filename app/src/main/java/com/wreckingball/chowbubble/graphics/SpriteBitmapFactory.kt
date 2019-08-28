@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.*
 import com.wreckingball.chowbubble.R
 import com.wreckingball.chowbubble.utils.ScreenUtils
+import com.wreckingball.chowbubble.utils.scaleBitmap
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -17,6 +18,10 @@ class SpriteBitmapFactory(private val context: Context) : KoinComponent {
         bitmap = processBackground(bitmap, screenUtils.screenDims)
         bitmapHolder[R.drawable.game_background] = bitmap
 
+        bitmapHolder[R.drawable.moonface_happy1] = processBitmap(context, R.drawable.moonface_happy1)
+        bitmapHolder[R.drawable.moonface_happy2] = processBitmap(context, R.drawable.moonface_happy2)
+        bitmapHolder[R.drawable.moonface_sad] = processBitmap(context, R.drawable.moonface_sad)
+        bitmapHolder[R.drawable.starburst_fade] = processBitmap(context, R.drawable.starburst_fade)
     }
 
     fun getBitmap(resourceId: Int) : Bitmap? {
@@ -59,4 +64,11 @@ class SpriteBitmapFactory(private val context: Context) : KoinComponent {
 
         return result
     }
+
+    private fun processBitmap(context: Context, id: Int): Bitmap {
+        var bitmap = BitmapFactory.decodeResource(context.resources, id)
+        bitmap = scaleBitmap(bitmap, scaleDims.y)
+        return bitmap
+    }
+
 }
