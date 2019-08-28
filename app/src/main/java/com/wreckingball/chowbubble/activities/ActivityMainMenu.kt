@@ -7,6 +7,7 @@ import com.wreckingball.chowbubble.R
 import com.wreckingball.chowbubble.animations.PulseAnimation
 import com.wreckingball.chowbubble.controllers.CHOW_SONGS_KEY
 import com.wreckingball.chowbubble.controllers.ChowSongs
+import com.wreckingball.chowbubble.di.setActivity
 import com.wreckingball.chowbubble.utils.PreferencesWrapper
 import kotlinx.android.synthetic.main.activity_main_menu.*
 import org.koin.android.ext.android.inject
@@ -19,6 +20,8 @@ class ActivityMainMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+
+        setActivity(this)
 
         button_sound.setOnClickListener {
             soundOn = !soundOn
