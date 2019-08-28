@@ -22,6 +22,9 @@ class SpriteBitmapFactory(private val context: Context) : KoinComponent {
         bitmapHolder[R.drawable.moonface_happy2] = processBitmap(context, R.drawable.moonface_happy2)
         bitmapHolder[R.drawable.moonface_sad] = processBitmap(context, R.drawable.moonface_sad)
         bitmapHolder[R.drawable.starburst_fade] = processBitmap(context, R.drawable.starburst_fade)
+        bitmapHolder[R.drawable.cloud_lg] = processBitmap(context, R.drawable.cloud_lg)
+        bitmapHolder[R.drawable.cloud_med] = processBitmap(context, R.drawable.cloud_med)
+        bitmapHolder[R.drawable.cloud_sm] = processBitmap(context, R.drawable.cloud_sm)
     }
 
     fun getBitmap(resourceId: Int) : Bitmap? {

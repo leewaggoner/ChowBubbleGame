@@ -10,8 +10,8 @@ import org.koin.core.inject
 
 class Moon : KoinComponent {
     private val screenUtils: ScreenUtils by inject()
-    private var moon: Sprite
-    private var starBurst: Sprite
+    private val moon: Sprite
+    private val starBurst: Sprite
 
     init {
         val screenWidth = screenUtils.screenDims.x

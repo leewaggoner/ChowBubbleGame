@@ -8,6 +8,7 @@ import android.graphics.Canvas
 import android.view.MotionEvent
 import com.wreckingball.chowbubble.activities.ActivityGameOver
 import com.wreckingball.chowbubble.graphics.Background
+import com.wreckingball.chowbubble.graphics.Clouds
 import com.wreckingball.chowbubble.graphics.Moon
 import com.wreckingball.chowbubble.utils.ScreenUtils
 import org.koin.core.KoinComponent
@@ -17,6 +18,7 @@ class ChowController(val context: Context) : KoinComponent {
     private val screenUtils: ScreenUtils by inject()
     private val background: Background by inject()
     private val moon: Moon by inject()
+    private val clouds: Clouds by inject()
     private val frameBufferBitmap = Bitmap.createBitmap(screenUtils.screenDims.x, screenUtils.screenDims.y, Bitmap.Config.ARGB_8888)
     private val frameBufferCanvas = Canvas(frameBufferBitmap)
 
@@ -32,11 +34,14 @@ class ChowController(val context: Context) : KoinComponent {
     }
 
     fun updateChow() {
+        moon.onUpdate()
+        clouds.onUpdate()
     }
 
     fun drawChow(canvas: Canvas) {
         background.onDraw(frameBufferCanvas)
         moon.onDraw(frameBufferCanvas)
+        clouds.onDraw(frameBufferCanvas)
         canvas.drawBitmap(frameBufferBitmap, 0f, 0f, null)
     }
 }
