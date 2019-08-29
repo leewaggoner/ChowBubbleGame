@@ -8,7 +8,7 @@ import com.wreckingball.chowbubble.utils.scaleBitmap
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class SpriteBitmapFactory(private val context: Context) : KoinComponent {
+class SpriteBitmapFactory(context: Context) : KoinComponent {
     private val screenUtils: ScreenUtils by inject()
     private var bitmapHolder: MutableMap<Int, Bitmap> = hashMapOf()
     private lateinit var scaleDims: PointF
@@ -25,6 +25,23 @@ class SpriteBitmapFactory(private val context: Context) : KoinComponent {
         bitmapHolder[R.drawable.cloud_lg] = processBitmap(context, R.drawable.cloud_lg)
         bitmapHolder[R.drawable.cloud_med] = processBitmap(context, R.drawable.cloud_med)
         bitmapHolder[R.drawable.cloud_sm] = processBitmap(context, R.drawable.cloud_sm)
+        bitmapHolder[R.drawable.life_full] = processBitmap(context, R.drawable.life_full)
+        bitmapHolder[R.drawable.life_empty] = processBitmap(context, R.drawable.life_empty)
+        bitmapHolder[R.drawable.starmeter_container] = processBitmap(context, R.drawable.starmeter_container)
+        bitmapHolder[R.drawable.starmeter_indicator] = processBitmap(context, R.drawable.starmeter_indicator)
+        bitmapHolder[R.drawable.chow_nocatch] = processBitmap(context, R.drawable.chow_nocatch)
+        bitmapHolder[R.drawable.chow_catch] = processBitmap(context, R.drawable.chow_catch)
+        bitmapHolder[R.drawable.bomb] = processBitmap(context, R.drawable.bomb)
+        bitmapHolder[R.drawable.bomb_explode] = processBitmap(context, R.drawable.bomb_explode)
+        bitmapHolder[R.drawable.broccoli] = processBitmap(context, R.drawable.broccoli)
+        bitmapHolder[R.drawable.bubble_tea_green] = processBitmap(context, R.drawable.bubble_tea_green)
+        bitmapHolder[R.drawable.bubble_tea_orange] = processBitmap(context, R.drawable.bubble_tea_orange)
+        bitmapHolder[R.drawable.bubble_tea_pink] = processBitmap(context, R.drawable.bubble_tea_pink)
+        bitmapHolder[R.drawable.bubble_tea_purple] = processBitmap(context, R.drawable.bubble_tea_purple)
+        bitmapHolder[R.drawable.carrot] = processBitmap(context, R.drawable.carrot)
+        bitmapHolder[R.drawable.garlic] = processBitmap(context, R.drawable.garlic)
+        bitmapHolder[R.drawable.star_bonus] = processBitmap(context, R.drawable.star_bonus)
+        bitmapHolder[R.drawable.tomato] = processBitmap(context, R.drawable.tomato)
     }
 
     fun getBitmap(resourceId: Int) : Bitmap? {

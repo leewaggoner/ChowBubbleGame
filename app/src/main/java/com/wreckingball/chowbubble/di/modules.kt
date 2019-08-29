@@ -5,11 +5,10 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import com.wreckingball.chowbubble.controllers.ChowController
+import com.wreckingball.chowbubble.controllers.ChowGirlController
 import com.wreckingball.chowbubble.controllers.ChowSongs
-import com.wreckingball.chowbubble.graphics.Background
-import com.wreckingball.chowbubble.graphics.Clouds
-import com.wreckingball.chowbubble.graphics.Moon
-import com.wreckingball.chowbubble.graphics.SpriteBitmapFactory
+import com.wreckingball.chowbubble.controllers.ScoreController
+import com.wreckingball.chowbubble.graphics.*
 import com.wreckingball.chowbubble.utils.PreferencesWrapper
 import com.wreckingball.chowbubble.utils.ScreenUtils
 import com.wreckingball.chowbubble.views.ChowView
@@ -29,6 +28,12 @@ val appModule = module(override = true) {
     single { Background() }
     single { Moon() }
     single { Clouds() }
+    single { Score() }
+    single { ScoreController() }
+    single { ChowGirl() }
+    single { ChowGirlController() }
+    single { FallingSpriteFactory() }
+    single { FallingSprites() }
 }
 
 private fun getSharedPrefs(context: Context) : SharedPreferences {
