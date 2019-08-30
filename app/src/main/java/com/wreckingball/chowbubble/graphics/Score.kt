@@ -51,11 +51,17 @@ class Score : KoinComponent {
         )
     }
 
+    fun reset() {
+        lifeSprites.forEach {
+            it.currentSprite = 0
+        }
+    }
+
     fun decrementLife(lives: Int) {
         lifeSprites[lives].incrementCurrentSprite()
     }
 
-    fun drawLives(life: Int, canvas: Canvas) {
+    fun drawLives(canvas: Canvas, life: Int) {
         for (i in 0 until life) {
             lifeSprites[i].onDraw(canvas)
         }
@@ -70,19 +76,19 @@ class Score : KoinComponent {
         )
     }
 
-    fun drawMeter(canvas: Canvas, bonusTime: Double) {
+    fun onDraw(canvas: Canvas, score: Int, bonusTime: Double) {
+        drawLives(canvas, MAX_LIVES)
+        drawScore(canvas, score)
+        if (bonusTime > 0) {
+            drawMeter(canvas, bonusTime)
+        }
+    }
+
+    private fun drawMeter(canvas: Canvas, bonusTime: Double) {
         starMeter.onDraw(canvas)
         val length = (bonusTime * (dstRect.right - dstRect.left)).toInt()
         val indicatorRect = Rect(dstRect)
         indicatorRect.right = indicatorRect.left + length
         canvas.drawBitmap(starMeterIndicator.getBitmap(), null, indicatorRect, null)
-    }
-
-    fun onDraw(canvas: Canvas, score: Int, bonusTime: Double) {
-        drawLives(MAX_LIVES, canvas)
-        drawScore(canvas, score)
-        if (bonusTime > 0) {
-            drawMeter(canvas, bonusTime)
-        }
     }
 }

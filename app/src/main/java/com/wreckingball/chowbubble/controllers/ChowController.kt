@@ -12,6 +12,10 @@ import com.wreckingball.chowbubble.graphics.Background
 import com.wreckingball.chowbubble.graphics.Clouds
 import com.wreckingball.chowbubble.graphics.FallingSprites
 import com.wreckingball.chowbubble.graphics.Moon
+import com.wreckingball.chowbubble.states.GameOverState
+import com.wreckingball.chowbubble.states.GamePlayingState
+import com.wreckingball.chowbubble.states.GameStartState
+import com.wreckingball.chowbubble.states.GameState
 import com.wreckingball.chowbubble.utils.ScreenUtils
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -24,6 +28,11 @@ class ChowController(private val context: Context) : KoinComponent {
     private val scoreController: ScoreController by inject()
     private val chowGirlController: ChowGirlController by inject()
     private val fallingSprites: FallingSprites by inject()
+    private val chowSounds: ChowSounds by inject()
+    private var gameState: GameState? = null
+    private val gameStartState = GameStartState(this, moon, clouds, chowGirlController, scoreController, chowSounds)
+    private val gamePlayingState = GamePlayingState(this, moon, clouds, chowGirlController, fallingSprites, scoreController, chowSounds)
+    private val gameOverState = GameOverState(this, moon, clouds, chowGirlController, fallingSprites, scoreController)
     private val frameBufferBitmap = Bitmap.createBitmap(screenUtils.screenDims.x, screenUtils.screenDims.y, Bitmap.Config.ARGB_8888)
     private val frameBufferCanvas = Canvas(frameBufferBitmap)
 
@@ -31,16 +40,27 @@ class ChowController(private val context: Context) : KoinComponent {
     private var touchDown = false
 
     fun startGame() {
+        gameState = gameStartState
+        gameState?.init()
     }
 
     fun onTouch(event: MotionEvent) {
         touchX = event.x
         if (event.action == MotionEvent.ACTION_DOWN) {
             touchDown = true
-            leaveGame(1000)
         } else if (event.action == MotionEvent.ACTION_UP) {
             touchDown = false
         }
+    }
+
+    fun playGame() {
+        gameState = gamePlayingState
+        gameState?.init()
+    }
+
+    fun endGame() {
+        gameState = gameOverState
+        gameState?.init()
     }
 
     fun leaveGame(score: Int) {
@@ -51,18 +71,12 @@ class ChowController(private val context: Context) : KoinComponent {
     }
 
     fun updateChow() {
-        moon.onUpdate()
-        clouds.onUpdate()
-        fallingSprites.onUpdate()
+        gameState?.onUpdate(touchDown, touchX)
     }
 
     fun drawChow(canvas: Canvas) {
         background.onDraw(frameBufferCanvas)
-        moon.onDraw(frameBufferCanvas)
-        clouds.onDraw(frameBufferCanvas)
-        scoreController.onDraw(frameBufferCanvas)
-        chowGirlController.onDraw(frameBufferCanvas)
-        fallingSprites.onDraw(frameBufferCanvas)
+        gameState?.onDraw(frameBufferCanvas)
         canvas.drawBitmap(frameBufferBitmap, 0f, 0f, null)
     }
 }

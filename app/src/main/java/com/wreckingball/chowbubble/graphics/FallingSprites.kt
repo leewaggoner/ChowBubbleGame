@@ -11,7 +11,7 @@ class FallingSprites : KoinComponent {
     private val SPEED_UP_INCREMENT = 10
     private val DROP_MULTIPLIER = 0.005f
 
-    val fallingSprites: MutableList<Sprite> = mutableListOf()
+    val fallingSprites: MutableList<Sprite> = arrayListOf()
     private val screenUtils: ScreenUtils by inject()
     private val fallingSpriteFactory: FallingSpriteFactory by inject()
     private var newSpriteTime = 1000
@@ -24,6 +24,10 @@ class FallingSprites : KoinComponent {
         spriteTime = System.currentTimeMillis() + newSpriteTime
         timeToSpeedUp = System.currentTimeMillis() + SPEED_UP_INTERVAL
         dropSpeed = (screenUtils.screenDims.y.toFloat() * DROP_MULTIPLIER).toInt()
+    }
+
+    fun reset() {
+        fallingSprites.clear()
     }
 
     fun onUpdate() {

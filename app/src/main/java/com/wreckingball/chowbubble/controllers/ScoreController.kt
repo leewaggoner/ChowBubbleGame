@@ -22,6 +22,14 @@ class ScoreController : KoinComponent {
 
     private val score: Score by inject()
 
+    fun reset() {
+        gameOver = false
+        curScore = 0
+        lives = MAX_LIVES
+        bonusTime = 0
+        score.reset()
+    }
+
     private fun decrementLives(penalty: Int) {
         var i = penalty
         while (i > 0 && lives > 0) {
@@ -63,6 +71,18 @@ class ScoreController : KoinComponent {
         incrementScore()
     }
 
+    fun drawScore(canvas: Canvas) {
+        score.drawScore(canvas, curScore)
+    }
+
+    fun drawLives(canvas: Canvas, curLives: Int) {
+        score.drawLives(canvas, curLives)
+    }
+
+    fun onDraw(canvas: Canvas) {
+        score.onDraw(canvas, curScore, handleBonusTime())
+    }
+
     private fun handleBonusTime() : Double {
         val time = bonusTime - System.currentTimeMillis()
         var value: Double = 0.toDouble()
@@ -73,9 +93,5 @@ class ScoreController : KoinComponent {
         }
 
         return value
-    }
-
-    fun onDraw(canvas: Canvas) {
-        score.onDraw(canvas, curScore, handleBonusTime())
     }
 }

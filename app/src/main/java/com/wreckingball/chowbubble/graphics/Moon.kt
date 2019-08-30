@@ -8,19 +8,31 @@ import com.wreckingball.chowbubble.utils.ScreenUtils
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
+const val MOON_FACE_HAPPY_1 = 0
+const val MOON_FACE_HAPPY_2 = 1
+const val MOON_FACE_SAD = 2
+
 class Moon : KoinComponent {
     private val screenUtils: ScreenUtils by inject()
     private val moon: Sprite
     private val starBurst: Sprite
 
     init {
-        val screenWidth = screenUtils.screenDims.x
         moon = Sprite(R.drawable.moonface_happy1, TYPE_STATIC, null, SpriteDrawStatic())
         moon.addSprite(R.drawable.moonface_happy2)
         moon.addSprite(R.drawable.moonface_sad)
-        moon.setXY(screenWidth - moon.getWidth() + screenUtils.dpToPx(10).toFloat(), screenUtils.dpToPx(20).toFloat())
         starBurst = Sprite(R.drawable.starburst_fade, TYPE_STATIC, null, SpriteDrawStatic())
+    }
+
+    fun reset() {
+        val screenWidth = screenUtils.screenDims.x
+        moon.setXY(screenWidth - moon.getWidth() + screenUtils.dpToPx(10).toFloat(), screenUtils.dpToPx(20).toFloat())
         starBurst.setXY(screenUtils.centerSpriteX(starBurst, screenWidth), 0f)
+        moon.updateStrategy = null
+        moon.paint.alpha = 255
+        starBurst.updateStrategy = null
+        moon.paint.alpha = 255
+        moon.currentSprite = 0
     }
 
     fun getCurrentSprite(): Int {

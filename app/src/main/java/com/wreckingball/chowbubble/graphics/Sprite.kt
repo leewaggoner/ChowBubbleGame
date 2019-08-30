@@ -15,7 +15,7 @@ const val TYPE_STAR = 4
 class Sprite(resourceId: Int, val spriteType: Int, var updateStrategy: SpriteUpdate?, var drawStrategy: SpriteDraw?) : KoinComponent {
 
     private val spriteBitmapFactory: SpriteBitmapFactory by inject()
-    private val sprites: MutableList<Bitmap> = mutableListOf()
+    private val sprites: MutableList<Bitmap> = arrayListOf()
     lateinit var box: RectF
     var currentSprite = 0
     var x: Float = 0f
@@ -54,10 +54,16 @@ class Sprite(resourceId: Int, val spriteType: Int, var updateStrategy: SpriteUpd
         return sprites[currentSprite].height
     }
 
+    fun setGirlXY(x: Float, y: Float, offset: Float) {
+        this.x = x
+        this.y = y
+        box.offsetTo(x + offset, y)
+    }
+
     fun setXY(x: Float, y: Float) {
         this.x = x
         this.y = y
-        box.offset(x, y)
+        box.offsetTo(x, y)
     }
 
     fun moveX(x: Float) {

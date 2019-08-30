@@ -4,10 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
-import com.wreckingball.chowbubble.controllers.ChowController
-import com.wreckingball.chowbubble.controllers.ChowGirlController
-import com.wreckingball.chowbubble.controllers.ChowSongs
-import com.wreckingball.chowbubble.controllers.ScoreController
+import com.wreckingball.chowbubble.controllers.*
 import com.wreckingball.chowbubble.graphics.*
 import com.wreckingball.chowbubble.utils.PreferencesWrapper
 import com.wreckingball.chowbubble.utils.ScreenUtils
@@ -18,8 +15,7 @@ import org.koin.dsl.module
 private lateinit var appActivity: AppCompatActivity
 
 val appModule = module(override = true) {
-    single { PreferencesWrapper(get()) }
-    single { getSharedPrefs(androidContext()) }
+    single { PreferencesWrapper(getSharedPrefs(androidContext())) }
     single { ChowSongs() }
     single { ChowView(androidContext(), get()) }
     single { ChowController(androidContext()) }
@@ -34,6 +30,7 @@ val appModule = module(override = true) {
     single { ChowGirlController() }
     single { FallingSpriteFactory() }
     single { FallingSprites() }
+    single { ChowSounds(androidContext()) }
 }
 
 private fun getSharedPrefs(context: Context) : SharedPreferences {

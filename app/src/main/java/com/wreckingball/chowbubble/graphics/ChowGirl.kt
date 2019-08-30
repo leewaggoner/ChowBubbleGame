@@ -21,15 +21,18 @@ class ChowGirl : KoinComponent{
 
     init {
         sprite.addSprite(R.drawable.chow_catch)
+
+        //make hit box smaller
         val width = sprite.getWidth().toFloat()
         halfWidth = width / 2
         quarterWidth = halfWidth / 2
-        val box = sprite.box
-        box.left += quarterWidth
-        box.right -= quarterWidth
-        box.bottom -= (sprite.getHeight() / 2).toFloat()
+        sprite.box.left += quarterWidth
+        sprite.box.right -= quarterWidth
+        sprite.box.bottom -= (sprite.getHeight() / 2).toFloat()
+        setXY(screenUtils.screenDims.x / 2 - halfWidth, screenUtils.screenDims.y * GIRL_START_Y_MODIFIER)
+    }
 
-        //set initial position
+    fun reset() {
         setXY(screenUtils.screenDims.x / 2 - halfWidth, screenUtils.screenDims.y * GIRL_START_Y_MODIFIER)
     }
 
@@ -45,8 +48,8 @@ class ChowGirl : KoinComponent{
         return sprite.x
     }
 
-    fun setXY(x: Float, y: Float) {
-        sprite.setXY(x, y)
+    private fun setXY(x: Float, y: Float) {
+        sprite.setGirlXY(x, y, quarterWidth)
     }
 
     fun moveX(x: Float) {

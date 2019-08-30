@@ -25,7 +25,7 @@ class ActivityMainMenu : AppCompatActivity() {
 
         button_sound.setOnClickListener {
             soundOn = !soundOn
-            handleSoundButton(soundOn, true)
+            handleSoundButton(soundOn)
         }
 
         button_instructions.setOnClickListener {
@@ -47,19 +47,15 @@ class ActivityMainMenu : AppCompatActivity() {
         handleSoundButton(soundOn)
     }
 
-    private fun handleSoundButton(isOn: Boolean, updateSound: Boolean = false) {
+    private fun handleSoundButton(isOn: Boolean) {
         if (isOn) {
             button_sound.setImageResource(R.drawable.sound_on)
             preferences.putBoolean(CHOW_SONGS_KEY, true)
-            if (updateSound) {
-                chowSongs.play(this, R.raw.main_theme)
-            }
+            chowSongs.play(this, R.raw.main_theme)
         } else {
             button_sound.setImageResource(R.drawable.sound_off)
             preferences.putBoolean(CHOW_SONGS_KEY, false)
-            if (updateSound) {
-                chowSongs.pause()
-            }
+            chowSongs.pause()
         }
     }
 }

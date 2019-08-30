@@ -1,6 +1,7 @@
 package com.wreckingball.chowbubble.controllers
 
 import android.graphics.Canvas
+import android.graphics.RectF
 import com.wreckingball.chowbubble.graphics.ChowGirl
 import com.wreckingball.chowbubble.states.ChowGirlCatchingState
 import com.wreckingball.chowbubble.states.ChowGirlStandingState
@@ -22,9 +23,17 @@ class ChowGirlController : KoinComponent {
         currentState.init()
     }
 
+    fun reset() {
+        chowGirl.reset()
+    }
+
     fun stand() {
         currentState = chowGirlStandingState
         currentState.init()
+    }
+
+    fun intersects(box: RectF) : Boolean {
+        return chowGirl.intersects(box)
     }
 
     fun catchItem() {
@@ -33,6 +42,7 @@ class ChowGirlController : KoinComponent {
     }
 
     fun onUpdate(touchDown: Boolean, touchX: Float) {
+        currentState.doAction()
         if (touchDown) {
             val x = chowGirl.getX()
             if (touchX < x + chowGirl.quarterWidth) {

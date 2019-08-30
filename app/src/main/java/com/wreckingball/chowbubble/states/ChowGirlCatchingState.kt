@@ -13,7 +13,7 @@ class ChowGirlCatchingState(private val chowGirl: ChowGirl) : ChowGirlState {
 
     override fun doAction() {
         if (System.currentTimeMillis() > timeToAnimate) {
-//            chowGirl.stand()
+            chowGirl.setGirlStanding()
         }
     }
 }
