@@ -7,6 +7,7 @@ import com.wreckingball.chowbubble.utils.ScreenUtils
 import com.wreckingball.chowbubble.utils.scaleBitmap
 import org.koin.core.KoinComponent
 import org.koin.core.inject
+import kotlin.math.max
 
 class SpriteBitmapFactory(context: Context) : KoinComponent {
     private val screenUtils: ScreenUtils by inject()
@@ -58,7 +59,7 @@ class SpriteBitmapFactory(context: Context) : KoinComponent {
         //of these two
         val xScale = screenDims.x.toFloat() / sourceWidth
         val yScale = screenDims.y.toFloat() / sourceHeight
-        val scale = Math.max(xScale, yScale)
+        val scale = max(xScale, yScale)
 
         //save the scaling info for use with other bitmaps
         scaleDims = PointF(xScale, yScale)

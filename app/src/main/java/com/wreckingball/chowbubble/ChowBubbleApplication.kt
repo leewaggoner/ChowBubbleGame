@@ -7,6 +7,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.wreckingball.chowbubble.controllers.CHOW_SONGS_KEY
 import com.wreckingball.chowbubble.controllers.ChowSongs
+import com.wreckingball.chowbubble.controllers.ChowSounds
 import com.wreckingball.chowbubble.di.appModule
 import com.wreckingball.chowbubble.utils.PreferencesWrapper
 import org.koin.android.ext.android.inject
@@ -14,9 +15,10 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class ChowBubbleApplication : Application(), LifecycleObserver {
-    val chowSongs: ChowSongs by inject()
-    val preferences: PreferencesWrapper by inject()
-    var isOn: Boolean? = false
+    private val chowSongs: ChowSongs by inject()
+    private val chowSounds: ChowSounds by inject()
+    private val preferences: PreferencesWrapper by inject()
+    private var isOn: Boolean? = false
     override fun onCreate() {
         super.onCreate()
         startKoin {
@@ -33,6 +35,7 @@ class ChowBubbleApplication : Application(), LifecycleObserver {
         if (isOn!!) {
             chowSongs.play(this, R.raw.main_theme)
         }
+        chowSounds.init(this)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -50,5 +53,6 @@ class ChowBubbleApplication : Application(), LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun OnAppStop() {
         chowSongs.stop()
+        chowSounds.release()
     }
 }

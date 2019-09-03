@@ -14,14 +14,12 @@ const val MOON_FACE_SAD = 2
 
 class Moon : KoinComponent {
     private val screenUtils: ScreenUtils by inject()
-    private val moon: Sprite
-    private val starBurst: Sprite
+    private val moon = Sprite(R.drawable.moonface_happy1, TYPE_STATIC, null, SpriteDrawStatic())
+    private val starBurst = Sprite(R.drawable.starburst_fade, TYPE_STATIC, null, SpriteDrawStatic())
 
     init {
-        moon = Sprite(R.drawable.moonface_happy1, TYPE_STATIC, null, SpriteDrawStatic())
         moon.addSprite(R.drawable.moonface_happy2)
         moon.addSprite(R.drawable.moonface_sad)
-        starBurst = Sprite(R.drawable.starburst_fade, TYPE_STATIC, null, SpriteDrawStatic())
     }
 
     fun reset() {

@@ -25,7 +25,7 @@ class Score : KoinComponent {
         val screenWidth = screenUtils.screenDims.x
         paint.color = Color.WHITE
         paint.textSize = screenWidth.toFloat() * 0.125f
-        val tenPx = screenUtils.dpToPx(10);
+        val tenPx = screenUtils.dpToPx(10)
         for (i in 0 until MAX_LIVES) {
             val sprite = Sprite(R.drawable.life_full, TYPE_STATIC, null, SpriteDrawStatic())
             sprite.addSprite(R.drawable.life_empty)
@@ -65,7 +65,7 @@ class Score : KoinComponent {
 
     fun drawScore(canvas: Canvas, score: Int) {
         canvas.drawText(
-            Integer.toString(score),
+            score.toString(),
             textOffsetX.toFloat(),
             textOffsetY.toFloat(),
             paint

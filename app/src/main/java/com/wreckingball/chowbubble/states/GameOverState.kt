@@ -21,7 +21,7 @@ class GameOverState(private val chowController: ChowController,
     private val CHOW_END_WAIT: Long = 2000
     private val screenUtils: ScreenUtils by inject()
     private var endTime: Long = 0
-    var leftGame = false
+    private var leftGame = false
 
     override fun init() {
         moon.setUpdateStrategy(SpriteUpdateDescendLeft(screenUtils.screenDims))

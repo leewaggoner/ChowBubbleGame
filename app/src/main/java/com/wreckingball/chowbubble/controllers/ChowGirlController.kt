@@ -14,7 +14,7 @@ class ChowGirlController : KoinComponent {
     private val screenUtils: ScreenUtils by inject()
     private val chowGirl: ChowGirl by inject()
     private val chowGirlStandingState: ChowGirlStandingState = ChowGirlStandingState(chowGirl)
-    private val chowGirlCatchingState: ChowGirlCatchingState = ChowGirlCatchingState(chowGirl)
+    private val chowGirlCatchingState: ChowGirlCatchingState = ChowGirlCatchingState(chowGirl, this)
     private var currentState: ChowGirlState = chowGirlStandingState
     private val moveIncrement: Float
 

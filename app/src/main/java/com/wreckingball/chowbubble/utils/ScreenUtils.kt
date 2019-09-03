@@ -15,9 +15,9 @@ class ScreenUtils(private val context: Context, activity: AppCompatActivity) {
         screenDims = Point(metrics.widthPixels, metrics.heightPixels)
     }
 
-    fun pxToDp(px: Int): Int {
-        return (px / (context.resources.displayMetrics.densityDpi / 160f) - 0.5f).toInt()
-    }
+//    fun pxToDp(px: Int): Int {
+//        return (px / (context.resources.displayMetrics.densityDpi / 160f) - 0.5f).toInt()
+//    }
 
     fun dpToPx(dp: Int): Int {
         val dm = context.resources.displayMetrics

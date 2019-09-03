@@ -30,7 +30,7 @@ val appModule = module(override = true) {
     single { ChowGirlController() }
     single { FallingSpriteFactory() }
     single { FallingSprites() }
-    single { ChowSounds(androidContext()) }
+    single { ChowSounds() }
 }
 
 private fun getSharedPrefs(context: Context) : SharedPreferences {
