@@ -28,6 +28,7 @@ class Moon : KoinComponent {
         val screenWidth = screenUtils.screenDims.x
         moon.setXY(screenWidth - moon.getWidth() + screenUtils.dpToPx(10).toFloat(), screenUtils.dpToPx(20).toFloat())
         starBurst.setXY(screenUtils.centerSpriteX(starBurst, screenWidth), 0f)
+        starBurst.paint.alpha = 255
         moon.updateStrategy = null
         moon.paint.alpha = 255
         starBurst.updateStrategy = null

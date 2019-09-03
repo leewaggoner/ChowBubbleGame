@@ -21,15 +21,18 @@ class GameOverState(private val chowController: ChowController,
     private val CHOW_END_WAIT: Long = 2000
     private val screenUtils: ScreenUtils by inject()
     private var endTime: Long = 0
+    var leftGame = false
 
     override fun init() {
         moon.setUpdateStrategy(SpriteUpdateDescendLeft(screenUtils.screenDims))
         endTime = System.currentTimeMillis() + CHOW_END_WAIT
+        leftGame = false
     }
 
     override fun onUpdate(touchDown: Boolean, touchX: Float) {
         clouds.onUpdate()
-        if (System.currentTimeMillis() > endTime) {
+        if (System.currentTimeMillis() > endTime && !leftGame) {
+            leftGame = true
             chowController.leaveGame(scoreController.curScore)
         }
         moon.onUpdate()
