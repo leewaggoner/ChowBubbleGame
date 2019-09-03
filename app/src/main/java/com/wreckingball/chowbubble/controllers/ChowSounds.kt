@@ -16,6 +16,7 @@ class ChowSounds(context: Context) {
     private val MAX_STREAMS = 4
     private val soundPool: SoundPool
     private val sound: MutableMap<String, Int> = hashMapOf()
+    var isOn = true
 
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -38,7 +39,9 @@ class ChowSounds(context: Context) {
     }
 
     fun play(id: String) {
-        soundPool.play(sound[id]!!, 0.5f, 0.5f, 0, 0, 1.0f)
+        if (isOn) {
+            soundPool.play(sound[id]!!, 0.5f, 0.5f, 0, 0, 1.0f)
+        }
     }
 
     fun release() {

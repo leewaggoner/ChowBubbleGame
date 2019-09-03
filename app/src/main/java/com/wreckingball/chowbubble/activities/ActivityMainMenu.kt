@@ -7,6 +7,7 @@ import com.wreckingball.chowbubble.R
 import com.wreckingball.chowbubble.animations.PulseAnimation
 import com.wreckingball.chowbubble.controllers.CHOW_SONGS_KEY
 import com.wreckingball.chowbubble.controllers.ChowSongs
+import com.wreckingball.chowbubble.controllers.ChowSounds
 import com.wreckingball.chowbubble.di.setActivity
 import com.wreckingball.chowbubble.utils.PreferencesWrapper
 import kotlinx.android.synthetic.main.activity_main_menu.*
@@ -15,6 +16,7 @@ import org.koin.android.ext.android.inject
 class ActivityMainMenu : AppCompatActivity() {
     private val preferences: PreferencesWrapper by inject()
     private val chowSongs: ChowSongs by inject()
+    private val chowSounds: ChowSounds by inject()
     private var soundOn: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +50,7 @@ class ActivityMainMenu : AppCompatActivity() {
     }
 
     private fun handleSoundButton(isOn: Boolean) {
+        chowSounds.isOn = isOn
         if (isOn) {
             button_sound.setImageResource(R.drawable.sound_on)
             preferences.putBoolean(CHOW_SONGS_KEY, true)
