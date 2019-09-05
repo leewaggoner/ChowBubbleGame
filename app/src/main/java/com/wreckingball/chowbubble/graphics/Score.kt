@@ -25,24 +25,24 @@ class Score : KoinComponent {
         val screenWidth = screenUtils.screenDims.x
         paint.color = Color.WHITE
         paint.textSize = screenWidth.toFloat() * 0.125f
-        val tenPx = screenUtils.dpToPx(10)
+        val space = screenUtils.pxToDp(80)
         for (i in 0 until MAX_LIVES) {
             val sprite = Sprite(R.drawable.life_full, TYPE_STATIC, null, SpriteDrawStatic())
             sprite.addSprite(R.drawable.life_empty)
-            val initialX = tenPx + (i * tenPx) + (i * sprite.getWidth())
+            val initialX = space + (i * space) + (i * sprite.getWidth())
             textOffsetX += initialX
-            sprite.setXY(initialX.toFloat(), tenPx.toFloat())
+            sprite.setXY(initialX.toFloat(), space.toFloat())
             lifeSprites.add(sprite)
         }
         textOffsetX -= lifeSprites[0].getWidth()
-        textOffsetY = tenPx + lifeSprites[0].getHeight()
+        textOffsetY = space + lifeSprites[0].getHeight()
 
         starMeter = Sprite(R.drawable.starmeter_container, TYPE_STATIC, null, SpriteDrawStatic())
-        starMeter.setXY(tenPx.toFloat(), (textOffsetY + tenPx).toFloat())
+        starMeter.setXY(space.toFloat(), (textOffsetY + space).toFloat())
         starMeterIndicator = Sprite(R.drawable.starmeter_indicator, TYPE_STATIC, null, SpriteDrawStatic())
-        val left = starMeter.x.toInt() + screenUtils.dpToPx(49)
-        val top = starMeter.y.toInt() + screenUtils.dpToPx(15)
-        val right = left + starMeter.getWidth() - (left + screenUtils.dpToPx(1))
+        val left = starMeter.x.toInt() + screenUtils.pxToDp(333)
+        val top = starMeter.y.toInt() + screenUtils.pxToDp(103)
+        val right = starMeter.getWidth() - screenUtils.pxToDp(10)
         val bottom = top + starMeterIndicator.getHeight()
         dstRect = Rect(left, top, right, bottom)
     }
