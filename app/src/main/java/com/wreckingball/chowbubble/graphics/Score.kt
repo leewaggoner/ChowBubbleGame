@@ -40,9 +40,9 @@ class Score : KoinComponent {
         starMeter = Sprite(R.drawable.starmeter_container, TYPE_STATIC, null, SpriteDrawStatic())
         starMeter.setXY(space.toFloat(), (textOffsetY + space).toFloat())
         starMeterIndicator = Sprite(R.drawable.starmeter_indicator, TYPE_STATIC, null, SpriteDrawStatic())
-        val left = starMeter.x.toInt() + screenUtils.pxToDp(333)
-        val top = starMeter.y.toInt() + screenUtils.pxToDp(103)
-        val right = starMeter.getWidth() - screenUtils.pxToDp(10)
+        val left = starMeter.x.toInt() + 88
+        val top = starMeter.y.toInt() + 26
+        val right = starMeter.y.toInt() + 220
         val bottom = top + starMeterIndicator.getHeight()
         dstRect = Rect(left, top, right, bottom)
     }
