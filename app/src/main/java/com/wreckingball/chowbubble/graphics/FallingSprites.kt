@@ -6,18 +6,18 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 import kotlin.random.Random
 
-class FallingSprites : KoinComponent {
-    private val SPEED_UP_INTERVAL = 5000
-    private val SPEED_UP_INCREMENT = 10
-    private val DROP_MULTIPLIER = 0.005f
+private const val SPEED_UP_INTERVAL = 5000
+private const val SPEED_UP_INCREMENT = 10
+private const val DROP_MULTIPLIER = 0.005f
 
+class FallingSprites : KoinComponent {
     val fallingSprites: MutableList<Sprite> = arrayListOf()
     private val screenUtils: ScreenUtils by inject()
     private val fallingSpriteFactory: FallingSpriteFactory by inject()
     private var newSpriteTime = 1000
-    private var dropSpeed: Int = 0
-    private var spriteTime: Long = 0
-    private var timeToSpeedUp: Long = 0
+    private var dropSpeed: Int
+    private var spriteTime: Long
+    private var timeToSpeedUp: Long
     private var numSlots: Int = 0
 
     init {
@@ -33,6 +33,7 @@ class FallingSprites : KoinComponent {
     fun onUpdate() {
         val currentTime = System.currentTimeMillis()
         if (currentTime > timeToSpeedUp) {
+            //decrease drop interval
             newSpriteTime -= SPEED_UP_INCREMENT
             if (newSpriteTime < 0) {
                 newSpriteTime = 0
@@ -41,6 +42,7 @@ class FallingSprites : KoinComponent {
         }
 
         if (currentTime > spriteTime) {
+            //drop a new sprite
             val newSprite = getSprite()
             if (newSprite != null) {
                 fallingSprites.add(newSprite)
@@ -50,6 +52,7 @@ class FallingSprites : KoinComponent {
 
         val iterator = fallingSprites.iterator()
         while (iterator.hasNext()) {
+            //update falling sprites
             val sprite = iterator.next()
             if (sprite.y < screenUtils.screenDims.y) {
                 sprite.moveY(dropSpeed.toFloat())

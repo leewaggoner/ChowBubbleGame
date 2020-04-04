@@ -8,12 +8,12 @@ import org.koin.core.inject
 const val MAX_LIVES = 3
 const val BONUS_TIME = 10000
 
-class ScoreController : KoinComponent {
-    private val BOMB_PENALTY = 3
-    private val VEGGIE_PENALTY = 1
-    private val BUBBLE_POINTS = 10
-    private val STAR_BONUS = 3
+private const val BOMB_PENALTY = 3
+private const val VEGGIE_PENALTY = 1
+private const val BUBBLE_POINTS = 10
+private const val STAR_BONUS = 3
 
+class ScoreController : KoinComponent {
     var gameOver = false
     var curScore = 0
 

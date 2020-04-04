@@ -64,19 +64,19 @@ class SpriteBitmapFactory(context: Context) : KoinComponent {
         //save the scaling info for use with other bitmaps
         scaleDims = PointF(xScale, yScale)
 
-        // Now get the size of the source bitmap when scaled
+        //get the size of the source bitmap when scaled
         val scaledWidth = scale * sourceWidth
         val scaledHeight = scale * sourceHeight
 
-        // Let's find out the upper left coordinates if the scaled bitmap
-        // should be centered in the new size given by the parameters
+        //find the upper left coordinates if the scaled bitmap
+        //should be centered in the new size given by the parameters
         val left = (screenDims.x - scaledWidth) / 2
         val top = (screenDims.y - scaledHeight) / 2
 
-        // The target rectangle for the new, scaled version of the source bitmap will now be:
+        //the target rectangle for the new, scaled version of the source bitmap will now be:
         val targetRect = RectF(left, top, left + scaledWidth, top + scaledHeight)
 
-        // Create a new bitmap of the specified size and draw our new scaled bitmap onto it.
+        //create a new bitmap of the specified size and draw our new scaled bitmap onto it.
         val result = Bitmap.createBitmap(screenDims.x, screenDims.y, background.config)
         val canvas = Canvas(result)
         canvas.drawBitmap(background, null, targetRect, null)

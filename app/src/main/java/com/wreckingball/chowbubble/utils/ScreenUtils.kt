@@ -16,12 +16,11 @@ class ScreenUtils(private val context: Context, activity: AppCompatActivity) {
     }
 
     fun pxToDp(px: Int): Int {
-        return (px / (context.resources.displayMetrics.densityDpi / 160f) - 0.5f).toInt()
+        return (px / (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)).toInt()
     }
 
     fun dpToPx(dp: Int): Int {
-        val dm = context.resources.displayMetrics
-        return (dp * (dm.densityDpi / 160f) + 0.5f).toInt()
+        return (dp * (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)).toInt()
     }
 
     fun centerSpriteX(sprite: Sprite, screenWide: Int): Float {

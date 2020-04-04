@@ -9,11 +9,11 @@ import com.wreckingball.chowbubble.controllers.ChowController
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class ChowView(context: Context, attrs: AttributeSet) : SurfaceView(context, attrs), KoinComponent, Runnable {
-    private val TICKS_PER_SECOND = 60
-    private val SKIP_TICKS = 1000 / TICKS_PER_SECOND
-    private val MAX_FRAMESKIP = 10
+private const val TICKS_PER_SECOND = 60
+private const val SKIP_TICKS = 1000 / TICKS_PER_SECOND
+private const val MAX_FRAMESKIP = 10
 
+class ChowView(context: Context, attrs: AttributeSet) : SurfaceView(context, attrs), KoinComponent, Runnable {
     private val chowController: ChowController by inject()
     private val surfaceHolder: SurfaceHolder = holder
     private val renderThread: Thread = Thread(this)

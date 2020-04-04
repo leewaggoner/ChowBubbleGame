@@ -14,8 +14,9 @@ import org.koin.android.ext.android.inject
 
 const val NEW_SCORE_KEY = "new_score"
 
+private const val HIGH_SCORE_KEY = "high_score"
+
 class ActivityGameOver : AppCompatActivity() {
-    private val HIGH_SCORE_KEY = "high_score"
     private val preferences: PreferencesWrapper by inject()
     private val chowSongs: ChowSongs by inject()
     private val chowSounds: ChowSounds by inject()

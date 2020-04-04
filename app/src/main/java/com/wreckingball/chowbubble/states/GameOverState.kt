@@ -12,13 +12,14 @@ import com.wreckingball.chowbubble.utils.ScreenUtils
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
+private const val CHOW_END_WAIT: Long = 2000
+
 class GameOverState(private val chowController: ChowController,
                     private val moon: Moon,
                     private val clouds: Clouds,
                     private val chowGirlController: ChowGirlController,
                     private val fallingSprites: FallingSprites,
                     private val scoreController: ScoreController) : GameState, KoinComponent {
-    private val CHOW_END_WAIT: Long = 2000
     private val screenUtils: ScreenUtils by inject()
     private var endTime: Long = 0
     private var leftGame = false

@@ -5,13 +5,14 @@ import com.wreckingball.chowbubble.controllers.*
 import com.wreckingball.chowbubble.graphics.Clouds
 import com.wreckingball.chowbubble.graphics.Moon
 
+private const val POPIN_INTERVAL = 500
+
 class GameStartState(private val chowController: ChowController,
                      private val moon: Moon,
                      private val clouds: Clouds,
                      private val chowGirlController: ChowGirlController,
                      private val scoreController: ScoreController,
                      private val chowSounds: ChowSounds) : GameState {
-    private val POPIN_INTERVAL = 500
     private var lifePopin: Long = 0
     private var lives = 0
 
@@ -45,5 +46,4 @@ class GameStartState(private val chowController: ChowController,
         scoreController.drawScore(frameBufferCanvas)
         scoreController.drawLives(frameBufferCanvas, lives)
     }
-
 }

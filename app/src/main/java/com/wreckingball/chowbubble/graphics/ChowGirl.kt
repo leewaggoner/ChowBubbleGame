@@ -11,9 +11,9 @@ import org.koin.core.inject
 const val GIRL_STANDING = 0
 const val GIRL_CATCHING = 1
 
-class ChowGirl : KoinComponent{
-    private val GIRL_START_Y_MODIFIER = 0.65f
+private const val GIRL_START_Y_MODIFIER = 0.65f
 
+class ChowGirl : KoinComponent{
     var halfWidth: Float
     val quarterWidth: Float
     private val screenUtils: ScreenUtils by inject()

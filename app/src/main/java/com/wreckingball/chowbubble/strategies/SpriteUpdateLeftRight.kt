@@ -3,8 +3,9 @@ package com.wreckingball.chowbubble.strategies
 import android.graphics.Point
 import com.wreckingball.chowbubble.graphics.Sprite
 
+private const val RANGE = 15
+
 class SpriteUpdateLeftRight(screenDims: Point) : SpriteUpdate {
-    private val RANGE = 15
     private var moveX = -(screenDims.x.toFloat() * 0.0002083f)
     private var baseX = 0.0f
 

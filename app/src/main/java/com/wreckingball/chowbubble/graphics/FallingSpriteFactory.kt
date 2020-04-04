@@ -6,10 +6,10 @@ import com.wreckingball.chowbubble.strategies.SpriteUpdate
 import com.wreckingball.chowbubble.strategies.SpriteUpdateRotateLeft
 import com.wreckingball.chowbubble.strategies.SpriteUpdateRotateRight
 
-class FallingSpriteFactory {
-    private val ROTATE_RIGHT = 1
-    private val ROTATE_LEFT = 2
+private const val ROTATE_RIGHT = 1
+private const val ROTATE_LEFT = 2
 
+class FallingSpriteFactory {
     fun getSprite(type: Int, rotationType: Int): Sprite? {
         var updateStrategy: SpriteUpdate? = null
         if (rotationType == ROTATE_LEFT) {
