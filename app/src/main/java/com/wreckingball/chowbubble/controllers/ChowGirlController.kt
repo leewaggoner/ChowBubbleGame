@@ -7,8 +7,8 @@ import com.wreckingball.chowbubble.states.ChowGirlCatchingState
 import com.wreckingball.chowbubble.states.ChowGirlStandingState
 import com.wreckingball.chowbubble.states.ChowGirlState
 import com.wreckingball.chowbubble.utils.ScreenUtils
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class ChowGirlController : KoinComponent {
     private val screenUtils: ScreenUtils by inject()

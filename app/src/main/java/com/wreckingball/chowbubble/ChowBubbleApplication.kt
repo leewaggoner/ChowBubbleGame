@@ -10,8 +10,8 @@ import com.wreckingball.chowbubble.controllers.ChowSongs
 import com.wreckingball.chowbubble.controllers.ChowSounds
 import com.wreckingball.chowbubble.di.appModule
 import com.wreckingball.chowbubble.utils.PreferencesWrapper
-import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.android.inject
 import org.koin.core.context.startKoin
 
 class ChowBubbleApplication : Application(), LifecycleObserver {

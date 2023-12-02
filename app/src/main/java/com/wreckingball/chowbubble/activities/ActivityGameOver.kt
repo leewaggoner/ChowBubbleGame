@@ -8,8 +8,8 @@ import com.wreckingball.chowbubble.animations.PulseAnimation
 import com.wreckingball.chowbubble.controllers.CHOW_SONGS_KEY
 import com.wreckingball.chowbubble.controllers.ChowSongs
 import com.wreckingball.chowbubble.controllers.ChowSounds
+import com.wreckingball.chowbubble.databinding.ActivityGameoverBinding
 import com.wreckingball.chowbubble.utils.PreferencesWrapper
-import kotlinx.android.synthetic.main.activity_gameover.*
 import org.koin.android.ext.android.inject
 
 const val NEW_SCORE_KEY = "new_score"
@@ -21,28 +21,30 @@ class ActivityGameOver : AppCompatActivity() {
     private val chowSongs: ChowSongs by inject()
     private val chowSounds: ChowSounds by inject()
     private var soundOn: Boolean = true
+    private var binding: ActivityGameoverBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_gameover)
+        binding = ActivityGameoverBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
 
         displayScore()
 
-        button_over_sound.setOnClickListener {
+        binding?.buttonOverSound?.setOnClickListener {
             soundOn = !soundOn
             handleSoundButton(soundOn)
         }
 
-        button_over_instructions.setOnClickListener {
+        binding?.buttonOverInstructions?.setOnClickListener {
             val pulse = AnimationUtils.loadAnimation(this, R.anim.pulse)
             pulse.setAnimationListener(PulseAnimation(this, ActivityInstructions::class.java))
-            button_over_instructions.startAnimation(pulse)
+            binding?.buttonOverInstructions?.startAnimation(pulse)
         }
 
-        button_playagain.setOnClickListener {
+        binding?.buttonPlayagain?.setOnClickListener {
             val pulse = AnimationUtils.loadAnimation(this, R.anim.pulse)
             pulse.setAnimationListener(PulseAnimation(this, ActivityGame::class.java))
-            button_playagain.startAnimation(pulse)
+            binding?.buttonPlayagain?.startAnimation(pulse)
         }
     }
 
@@ -55,11 +57,11 @@ class ActivityGameOver : AppCompatActivity() {
     private fun handleSoundButton(isOn: Boolean) {
         chowSounds.isOn = isOn
         if (isOn) {
-            button_over_sound.setImageResource(R.drawable.sound_on)
+            binding?.buttonOverSound?.setImageResource(R.drawable.sound_on)
             preferences.putBoolean(CHOW_SONGS_KEY, true)
             chowSongs.play(this, R.raw.main_theme)
         } else {
-            button_over_sound.setImageResource(R.drawable.sound_off)
+            binding?.buttonOverSound?.setImageResource(R.drawable.sound_off)
             preferences.putBoolean(CHOW_SONGS_KEY, false)
             chowSongs.pause()
         }
@@ -67,14 +69,14 @@ class ActivityGameOver : AppCompatActivity() {
 
     private fun displayScore() {
         val newScore = intent.getIntExtra(NEW_SCORE_KEY, 0)
-        new_score.text = getString(R.string.new_score, newScore)
+        binding?.newScore?.text = getString(R.string.new_score, newScore)
 
         val bestScore = preferences.getInt(HIGH_SCORE_KEY, 0)
         if (newScore > bestScore) {
             preferences.putInt(HIGH_SCORE_KEY, newScore)
-            best_score.text = getString(R.string.best_score, newScore)
+            binding?.bestScore?.text = getString(R.string.best_score, newScore)
         } else {
-            best_score.text = getString(R.string.best_score, bestScore)
+            binding?.bestScore?.text = getString(R.string.best_score, bestScore)
         }
 
     }

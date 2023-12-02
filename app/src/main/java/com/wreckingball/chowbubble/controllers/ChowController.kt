@@ -17,8 +17,8 @@ import com.wreckingball.chowbubble.states.GamePlayingState
 import com.wreckingball.chowbubble.states.GameStartState
 import com.wreckingball.chowbubble.states.GameState
 import com.wreckingball.chowbubble.utils.ScreenUtils
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class ChowController(private val context: Context) : KoinComponent {
     private val screenUtils: ScreenUtils by inject()

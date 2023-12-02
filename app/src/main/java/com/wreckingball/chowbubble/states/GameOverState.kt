@@ -9,8 +9,8 @@ import com.wreckingball.chowbubble.graphics.FallingSprites
 import com.wreckingball.chowbubble.graphics.Moon
 import com.wreckingball.chowbubble.strategies.SpriteUpdateDescendLeft
 import com.wreckingball.chowbubble.utils.ScreenUtils
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 private const val CHOW_END_WAIT: Long = 2000
 

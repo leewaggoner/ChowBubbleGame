@@ -5,8 +5,8 @@ import com.wreckingball.chowbubble.R
 import com.wreckingball.chowbubble.strategies.SpriteDrawStatic
 import com.wreckingball.chowbubble.strategies.SpriteUpdate
 import com.wreckingball.chowbubble.utils.ScreenUtils
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 const val MOON_FACE_HAPPY_1 = 0
 const val MOON_FACE_HAPPY_2 = 1

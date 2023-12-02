@@ -2,8 +2,8 @@ package com.wreckingball.chowbubble.controllers
 
 import android.graphics.Canvas
 import com.wreckingball.chowbubble.graphics.Score
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 const val MAX_LIVES = 3
 const val BONUS_TIME = 10000

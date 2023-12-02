@@ -2,8 +2,8 @@ package com.wreckingball.chowbubble.graphics
 
 import android.graphics.Canvas
 import com.wreckingball.chowbubble.utils.ScreenUtils
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import kotlin.random.Random
 
 private const val SPEED_UP_INTERVAL = 5000

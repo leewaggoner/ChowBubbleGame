@@ -5,8 +5,8 @@ import android.graphics.*
 import com.wreckingball.chowbubble.R
 import com.wreckingball.chowbubble.utils.ScreenUtils
 import com.wreckingball.chowbubble.utils.scaleBitmap
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import kotlin.math.max
 
 class SpriteBitmapFactory(context: Context) : KoinComponent {

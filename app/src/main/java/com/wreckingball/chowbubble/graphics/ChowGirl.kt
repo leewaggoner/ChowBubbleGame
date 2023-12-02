@@ -5,15 +5,15 @@ import android.graphics.RectF
 import com.wreckingball.chowbubble.R
 import com.wreckingball.chowbubble.strategies.SpriteDrawStatic
 import com.wreckingball.chowbubble.utils.ScreenUtils
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 const val GIRL_STANDING = 0
 const val GIRL_CATCHING = 1
 
 private const val GIRL_START_Y_MODIFIER = 0.65f
 
-class ChowGirl : KoinComponent{
+class ChowGirl : KoinComponent {
     var halfWidth: Float
     val quarterWidth: Float
     private val screenUtils: ScreenUtils by inject()

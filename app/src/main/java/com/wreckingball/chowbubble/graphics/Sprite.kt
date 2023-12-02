@@ -3,8 +3,8 @@ package com.wreckingball.chowbubble.graphics
 import android.graphics.*
 import com.wreckingball.chowbubble.strategies.SpriteDraw
 import com.wreckingball.chowbubble.strategies.SpriteUpdate
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 const val TYPE_STATIC = 0
 const val TYPE_BUBBLE_TEA = 1
@@ -12,8 +12,12 @@ const val TYPE_VEGGIE = 2
 const val TYPE_BOMB = 3
 const val TYPE_STAR = 4
 
-class Sprite(resourceId: Int, val spriteType: Int, var updateStrategy: SpriteUpdate?, var drawStrategy: SpriteDraw?) : KoinComponent {
-
+class Sprite(
+    resourceId: Int,
+    val spriteType: Int,
+    var updateStrategy: SpriteUpdate?,
+    var drawStrategy: SpriteDraw?
+) : KoinComponent {
     private val spriteBitmapFactory: SpriteBitmapFactory by inject()
     private val sprites: MutableList<Bitmap> = arrayListOf()
     lateinit var box: RectF

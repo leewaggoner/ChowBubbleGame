@@ -8,8 +8,8 @@ import com.wreckingball.chowbubble.R
 import com.wreckingball.chowbubble.controllers.MAX_LIVES
 import com.wreckingball.chowbubble.strategies.SpriteDrawStatic
 import com.wreckingball.chowbubble.utils.ScreenUtils
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class Score : KoinComponent {
     private val screenUtils: ScreenUtils by inject()

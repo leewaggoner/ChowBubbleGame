@@ -7,8 +7,8 @@ import com.wreckingball.chowbubble.strategies.SpriteUpdateLeftRight
 import com.wreckingball.chowbubble.strategies.SpriteUpdateRightLeft
 import com.wreckingball.chowbubble.strategies.SpriteUpdateUpDown
 import com.wreckingball.chowbubble.utils.ScreenUtils
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class Clouds : KoinComponent {
     private val screenUtils: ScreenUtils by inject()

@@ -6,8 +6,8 @@ import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.wreckingball.chowbubble.controllers.ChowController
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 private const val TICKS_PER_SECOND = 60
 private const val SKIP_TICKS = 1000 / TICKS_PER_SECOND
